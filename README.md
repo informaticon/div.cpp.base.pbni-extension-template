@@ -1,0 +1,28 @@
+# div.cpp.base.pbni-extension-template.sln
+Template for creating PBNI Extensions
+
+## What needs changing
+- Change the project name in `CMakeLists.txt`, this will be the names of the DLLs
+- Replace every occurence of `templateLib` in `CMakeLists.txt` with the name of your project
+- Create your sourcefiles at `src/` and addd them to `CMakeLists.txt` in the `add_library` function
+
+
+## Setting up an environment
+If this is your first time building a PBNI Extension, [instal vcpkg](https://vcpkg.io/en/getting-started.html). Then install boost:
+```ps1
+vcpkg install --triplet=x86-windows-static `
+	boost-stacktrace `
+	boost-utility `
+	boost-multiprecision `
+	boost-algorithm `
+```
+
+Run Cmake inside this folder
+```ps1
+mkdir build; cd build
+cmake .. -A Win32 `
+	-DVCPKG_TARGET_TRIPLET=x86-windows-static `
+	-DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
+```
+
+Open `build/${YOUR_PROJECT_NAME}.sln`

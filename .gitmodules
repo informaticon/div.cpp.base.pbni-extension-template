@@ -1,0 +1,3 @@
+[submodule "extern/lib.cpp.base.pbni-framework"]
+	path = extern/lib.cpp.base.pbni-framework
+	url = https://github.com/informaticon/lib.cpp.base.pbni-framework
