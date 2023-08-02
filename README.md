@@ -1,10 +1,11 @@
-# div.cpp.base.pbni-extension-template.sln
+# div.cpp.base.pbni-extension-template
 Template for creating PBNI Extensions
 
 ## What needs changing
 - Change the project name in `CMakeLists.txt`, this will be the names of the DLLs
 - Replace every occurence of `templateLib` in `CMakeLists.txt` with the name of your project
 - Create your sourcefiles at `src/` and addd them to `CMakeLists.txt` in the `add_library` function
+- [If you use VSCode] Rename the targets in `CMakePresets.json` and remove `Install` target if you dont need it
 
 
 ## Setting up an environment
