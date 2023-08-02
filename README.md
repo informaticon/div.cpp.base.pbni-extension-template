@@ -20,9 +20,7 @@ vcpkg install --triplet=x86-windows-static `
 Run Cmake inside this folder
 ```ps1
 mkdir build; cd build
-cmake .. -A Win32 `
-	-DVCPKG_TARGET_TRIPLET=x86-windows-static `
-	-DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
+cmake .. --preset vcpkg
 ```
 
 Open `build/${YOUR_PROJECT_NAME}.sln`
