@@ -16,13 +16,13 @@
             "name": "Debug",
             "configurePreset": "vcpkg",
             "configuration": "Debug",
-            "targets": [ "install", "libCurl" ]
+            "targets": [ "install", "templateLib" ]
         },
         {
             "name": "MinSizeRel",
             "configurePreset": "vcpkg",
             "configuration": "MinSizeRel",
-            "targets": [ "install", "libCurl" ]
+            "targets": [ "install", "templateLib" ]
         }
     ]
 }
