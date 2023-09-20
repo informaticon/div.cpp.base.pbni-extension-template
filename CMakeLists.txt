@@ -26,7 +26,7 @@ target_compile_features(templateLib PUBLIC cxx_std_20)
 
 set_target_properties(templateLib
 PROPERTIES
-	OUTPUT_NAME lib.pbni.base.libcurl
+	OUTPUT_NAME div.cpp.base.pbni-extension-template
 	RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_PATH}
 	ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_PATH}
 	LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_PATH}
@@ -39,7 +39,6 @@ if (NOT A3_LIB_PATH STREQUAL "")
 endif()
 
 add_subdirectory(extern)
-find_package(CURL REQUIRED)
 
 target_link_libraries(templateLib
 PRIVATE
