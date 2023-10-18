@@ -1,0 +1,72 @@
+# Automatically
+# * determines next version number, based on the commit meesages (feat:/fix:/...)
+# * creates a tag + release
+# * builds the dll an uploads it to the gh release
+# Build the
+name: Build & Release
+on:
+  push:
+    branches:
+      - main
+      - prerelease
+jobs:
+  build:
+    runs-on: [self-hosted, windows]
+    
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        submodules: recursive
+        token: ${{ secrets.GH_PRIVATE_READ_PAT }}
+
+    # goes through commits and increases major if a commit msg contains `BREAKING CHANGE:`,
+    # increases minor if `feat:` found or increases patch on `fix:`
+    # if none of them occur, the default can be set with default_bump (major, minor, patch, false)
+    # set manually a version with "custom_tag" (https://github.com/mathieudutour/github-tag-action)
+    - name: Increase version and push tag
+      id: tag_version
+      uses: mathieudutour/github-tag-action@v6.1
+      with:
+        github_token: ${{ github.token }} # need write permissions to tag repo
+        default_bump: false
+        default_prerelease_bump: prerelease
+        pre_release_branches: prerelease
+        # append_to_pre_release_tag: testrelease
+        # release_branches is default to main/master and will increase the patch number if nothing found in commit messages
+    
+    # make other steps below more independent of 'tag_version' by using these variables
+    - name: Store return values of tag_version
+      run: |
+        echo "RELEASE_TYPE=${{ steps.tag_version.outputs.release_type }}" >> $env:GITHUB_ENV
+        echo "NEW_TAG=${{ steps.tag_version.outputs.new_tag }}" >> $env:GITHUB_ENV
+        echo "NEW_VERSION=${{ steps.tag_version.outputs.new_version }}" >> $env:GITHUB_ENV
+
+    - name: Install Packages
+      run: vcpkg install --triplet=x86-windows-static boost-stacktrace boost-utility boost-multiprecision boost-algorithm boost-regex
+
+    - name: Configure CMake
+      run: cmake . -B build  --preset vcpkg
+     
+    - name: Build
+      run: cmake --build build/ --config MinSizeRel
+
+  
+    - name: Sign
+      env:
+        CSB_AUTH_CLIENTID: ${{ secrets.CODESIGNING_CLIENT_ID }}
+        CSB_AUTH_CLIENTSECRET: ${{ secrets.CODESIGNING_CLIENT_SECRET }}
+      run: csb.exe $env:GITHUB_WORKSPACE/out/MinSizeRel/${{ github.event.repository.name }}.dll --silent
+      shell: powershell # USE powershell (desktop) and not default pwsh (core) to access csb.exe in PATH
+    
+    - name: Create release
+      if: ${{ env.RELEASE_TYPE != '' }}
+      uses: softprops/action-gh-release@v1
+      id: create_release
+      with:
+        draft: false
+        prerelease: ${{ contains(fromJSON('["premajor", "preminor", "prepatch", "prerelease"]'), env.RELEASE_TYPE) }}
+        tag_name: ${{ env.NEW_TAG }}
+        generate_release_notes: true
+        files: |
+          out/MinSizeRel/${{ github.event.repository.name }}.dll   
