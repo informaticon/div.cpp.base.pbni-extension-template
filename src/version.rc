@@ -1,0 +1,26 @@
+#include <windows.h>
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION     VER_BUILD_NR
+FILEFLAGSMASK  	VS_FFI_FILEFLAGSMASK
+FILEOS          VOS__WINDOWS32
+FILETYPE        VFT_DLL
+FILESUBTYPE     VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4"
+        BEGIN
+            VALUE "CompanyName",      VER_COMPANY_STR
+            VALUE "LegalCopyright",   VER_COMPANY_STR
+            VALUE "InternalName",     VER_NAME_STR
+            VALUE "ProductName",      VER_NAME_STR
+            VALUE "ProductVersion",   VER_VERSION_STR
+        END
+    END
+
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0807, 1200
+    END
+END

@@ -1,0 +1,22 @@
+# * builds the dll
+name: Build
+on:
+  push:
+    branches:
+      - '*'
+      - '!main'
+      - '!prerelease'
+jobs:
+  build:
+    runs-on: [self-hosted, windows]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: recursive
+          token: ${{ secrets.GH_PRIVATE_READ_PAT }}
+
+      - name: Build
+        id: build
+        uses: informaticon/dev.github.base.pbni-build-action@v1

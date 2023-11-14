@@ -1,0 +1,10 @@
+{
+    "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+    "dependencies": [
+        "boost-stacktrace",
+        "boost-utility",
+        "boost-multiprecision",
+        "boost-algorithm"
+    ],
+    "builtin-baseline": "8eb57355a4ffb410a2e94c07b4dca2dffbee8e50"
+}
