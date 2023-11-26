@@ -16,13 +16,13 @@
             "name": "Debug",
             "configurePreset": "vcpkg",
             "configuration": "Debug",
-            "targets": [ "install", "templateLib" ]
+            "targets": [ "install", "°°°PACKAGE_NAME°°°" ]
         },
         {
             "name": "MinSizeRel",
             "configurePreset": "vcpkg",
             "configuration": "MinSizeRel",
-            "targets": [ "install", "templateLib" ]
+            "targets": [ "install", "°°°PACKAGE_NAME°°°" ]
         }
     ]
 }

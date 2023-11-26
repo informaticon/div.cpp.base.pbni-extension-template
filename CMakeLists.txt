@@ -45,16 +45,18 @@ PROPERTIES
 	LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_PATH}
 )
 
+# Warning doesn't affect us, since we use a fixed Boost version
+set(Boost_NO_WARN_NEW_VERSIONS "1")
+
+find_package(pbni-framework CONFIG REQUIRED)
+target_link_libraries(°°°PACKAGE_NAME°°°
+PRIVATE
+	inf::pbni-framework
+)
+
+
 if (NOT A3_LIB_PATH STREQUAL "")
 	install(TARGETS °°°PACKAGE_NAME°°°
 		RUNTIME DESTINATION ${A3_LIB_PATH}
 	)
 endif()
-
-add_subdirectory(extern)
-# add your find_package() command here
-
-target_link_libraries(°°°PACKAGE_NAME°°°
-PRIVATE
-	libPBNIFramework
-)

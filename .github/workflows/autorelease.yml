@@ -36,12 +36,10 @@ jobs:
     
     - name: Build
       id: build
-      uses: informaticon/dev.github.base.pbni-build-action@v1
+      uses: informaticon/dev.github.base.pbni-build-action@v1.3.0
       with:
         version: "${{ steps.tag_version.outputs.new_version }}"
 
-    # release uses new tag created above and appends package assets, changelog.md can be set as body
-    # only run it if new tag was created
     - name: Create release
       if: ${{ steps.tag_version.outputs.release_type != '' }}
       uses: softprops/action-gh-release@v1
@@ -51,4 +49,4 @@ jobs:
         prerelease: ${{ contains(fromJSON('["premajor", "preminor", "prepatch", "prerelease"]'), steps.tag_version.outputs.release_type) }}
         tag_name: ${{ steps.tag_version.outputs.new_tag }}
         generate_release_notes: true
-        files: ${{ steps.build.outputs.dll-file }} 
+        files: ${{ steps.build.outputs.dll-file }}

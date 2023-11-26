@@ -4,21 +4,24 @@ Template for creating PBNI Extensions
 
 ## What needs changing
 
-The project name is the package name accoring to the informaticon universal naming convention (e.g. lib.pbni.base.mail-client).
+The project name is the package name according to the informaticon universal naming convention (e.g. lib.pbni.base.mail-client).
 
 - Replace every occurence of `°°°PACKAGE_NAME°°°` in `CMakeLists.txt` with the name of your project
+    - *If you want to use VSCode's CMake plugin, also replace the ones inside `CMakePresets.json`*
 - Create your sourcefiles at `src/` and add them to `CMakeLists.txt` in the `add_library` function (replace `°°°SOURCE_FILES°°°` with them).
 
 ## Setting up an environment
 
-If this is your first time building a PBNI Extension, [instal vcpkg](https://vcpkg.io/en/getting-started.html).
-Then condiugre the project including installing the dependencies:
+If this is your first time building a PBNI Extension, [install vcpkg](https://vcpkg.io/en/getting-started.html) to `C:\vcpkg`
+*If for some reason you cannot install vcpkg in `C:\vcpkg` you'll have to add `-DCMAKE_TOOLCHAIN_FILE="your_vcpkg_path/scripts/buildsystems/vcpkg.cmake"` to every cmake command that includes `--preset vcpkg`*
+
+Then configure the project including installing the dependencies:
 
 ```ps1
 cmake . -B build --preset vcpkg 
 ```
 
-Open `build/${YOUR_PROJECT_NAME}.sln`
+Then you can open `build/${YOUR_PROJECT_NAME}.sln` using Visual Studio
 
 ## Building
 

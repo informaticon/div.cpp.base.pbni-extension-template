@@ -1,10 +1,20 @@
 {
-    "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
-    "dependencies": [
-        "boost-stacktrace",
-        "boost-utility",
-        "boost-multiprecision",
-        "boost-algorithm"
-    ],
-    "builtin-baseline": "8eb57355a4ffb410a2e94c07b4dca2dffbee8e50"
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "dependencies": [
+    "pbni-framework"
+  ],
+  "overrides": [
+    { "name": "pbni-framework", "version": "0.0.1" }
+  ],
+  "vcpkg-configuration": {
+    "registries": [
+      {
+        "kind": "git",
+        "repository": "https://github.com/informaticon/dev.vcpkg.base.registry",
+        "packages": [ "pbni-framework" ],
+        "baseline": "057f6afdc2e6df5d87094d14e3ad09a60b121bca"
+      }
+    ]
+  },
+  "builtin-baseline": "8eb57355a4ffb410a2e94c07b4dca2dffbee8e50"
 }
