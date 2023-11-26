@@ -34,9 +34,16 @@ jobs:
         # append_to_pre_release_tag: testrelease
         # release_branches is default to main/master and will increase the patch number if nothing found in commit messages
     
+
+    # Needed to give vcpkg access to the private repository
+    - name: Git Creds
+      run: git config --global url.https://`${{ secrets.GH_PRIVATE_READ_PAT }}@github.com/.insteadOf https://github.com/
+      # The backtick ensures, that the secret isn't written into the config file 
+      # instead, the token will be expanded when go wants to download a package
+
     - name: Build
       id: build
-      uses: informaticon/dev.github.base.pbni-build-action@v1.3.0
+      uses: informaticon/dev.github.base.pbni-build-action@v1.3.2
       with:
         version: "${{ steps.tag_version.outputs.new_version }}"
 
