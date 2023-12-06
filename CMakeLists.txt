@@ -43,6 +43,9 @@ PROPERTIES
 	RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_PATH}
 	ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_PATH}
 	LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_PATH}
+ 	# Because vcpkg x86-windows-static sets this in dependencies, but not the main project
+ 	MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
+
 )
 
 # Warning doesn't affect us, since we use a fixed Boost version
