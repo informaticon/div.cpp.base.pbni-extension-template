@@ -55,6 +55,8 @@ PRIVATE
 	inf::pbni-framework
 )
 
+target_precompile_headers(lib.pbni.base.graphics-utils PUBLIC ${PBNI_FRAMEWORK_HEADERS})
+
 
 if (NOT A3_LIB_PATH STREQUAL "")
 	install(TARGETS °°°PACKAGE_NAME°°°
