@@ -30,3 +30,36 @@ First setup the environment, then either open the Project in Visual Studio or ru
 ```ps1
 cmake --build build/ --config MinSizeRel
 ```
+
+## Example code
+
+arithmetic.h
+```cpp
+namespace Inf {
+    class arithmetic : public PBNI_Class {
+    public:
+        arithmetic(
+            IPB_Session *session,
+            pbobject pbobj,
+            std::wstring pb_class_name
+        ) : PBNI_Class(session, pbobj, pb_class_name) {
+        }
+
+        PBInt f_add(PBInt, PBInt);
+    };
+}
+```
+
+arithmetic.cpp
+```cpp
+#include "arithmetic.h"
+
+namespace Inf {
+    INF_REGISTER_CLASS(arithmetic, L"u_pbni_arithmetic");
+
+    INF_REGISTER_FUNC(f_add, L"of_add", L"ai_left", L"ai_right");
+    PBInt arithmetic::f_add(PBInt arg0, PBInt arg1) {
+        return arg0 + arg1;
+    }
+}
+```
