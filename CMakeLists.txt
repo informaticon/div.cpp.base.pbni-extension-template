@@ -6,9 +6,9 @@ cmake_minimum_required(VERSION 3.15)
 ##################################################
 
 set(OUTPUT_PATH "${CMAKE_SOURCE_DIR}/out" CACHE PATH "Location of built dlls/libraries")
-set(A3_LIB_PATH "" CACHE PATH "Location of A3, is used to copy the resulting DLL when running INSTALL")
-set(VERSION_STR "" CACHE STRING "Version number to add to the DLL")
-
+set(INSTALL_PATH "${CMAKE_SOURCE_DIR}/pbproj" CACHE PATH "Location where the resulting DLL shall be placed in")
+set(VERSION_STR "0.0.0-trunk" CACHE STRING "Version number to add to the DLL")
+set(COMPANY_NAME "" CACHE STRING "")
 ##################################################
 #               °°°PACKAGE_NAME°°°               #
 ##################################################
@@ -16,17 +16,12 @@ set(VERSION_STR "" CACHE STRING "Version number to add to the DLL")
 project(°°°PACKAGE_NAME°°° LANGUAGES CXX)
 
 add_library(°°°PACKAGE_NAME°°° SHARED
-	# Add your source files here
-	# Example: src/main.cpp
-	°°°SOURCE_FILES°°°
+	°°°SOURCE_NAME°°°
 )
-
-
-target_compile_features(°°°PACKAGE_NAME°°° PUBLIC cxx_std_20)
 
 set_target_properties(°°°PACKAGE_NAME°°°
 PROPERTIES
-	OUTPUT_NAME "${CMAKE_PROJECT_NAME}"
+	OUTPUT_NAME °°°PACKAGE_NAME°°°
 	RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_PATH}
 	ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_PATH}
 	LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_PATH}
@@ -39,7 +34,7 @@ string(TIMESTAMP BUILD_NR "%Y,%m,%d,%H%M")
 target_compile_definitions(°°°PACKAGE_NAME°°°
 PUBLIC
 	VER_BUILD_NR=${BUILD_NR}
-	VER_COMPANY_STR="Informaticon AG"
+	VER_COMPANY_STR="${COMPANY_NAME}"
 	VER_NAME_STR="${PROJECT_NAME}"
 	VER_VERSION_STR="${VERSION_STR}"
 )
@@ -55,11 +50,10 @@ PRIVATE
 	inf::pbni-framework
 )
 
-target_precompile_headers(lib.pbni.base.graphics-utils PUBLIC ${PBNI_FRAMEWORK_HEADERS})
+target_precompile_headers(°°°PACKAGE_NAME°°° PUBLIC ${PBNI_FRAMEWORK_HEADERS})
 
-
-if (NOT A3_LIB_PATH STREQUAL "")
+if (NOT INSTALL_PATH STREQUAL "")
 	install(TARGETS °°°PACKAGE_NAME°°°
-		RUNTIME DESTINATION ${A3_LIB_PATH}
+		RUNTIME DESTINATION ${A3_LIB_INSTALL_PATHPATH}
 	)
 endif()
