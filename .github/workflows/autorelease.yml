@@ -43,7 +43,7 @@ jobs:
 
     - name: Build
       id: build
-      uses: informaticon/dev.github.base.pbni-build-action@v1.3.2
+      uses: informaticon/dev.github.base.pbni-build-action@v1
       with:
         version: "${{ steps.tag_version.outputs.new_version }}"
 
