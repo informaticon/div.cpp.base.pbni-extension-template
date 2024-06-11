@@ -4,7 +4,7 @@
     "pbni-framework"
   ],
   "overrides": [
-    { "name": "pbni-framework", "version": "0.0.7" }
+    { "name": "pbni-framework", "version": "0.0.8" }
   ],
   "vcpkg-configuration": {
     "registries": [
@@ -12,7 +12,7 @@
         "kind": "git",
         "repository": "https://github.com/informaticon/dev.vcpkg.base.registry",
         "packages": [ "pbni-framework" ],
-        "baseline": "9f105f25bfdf66863487f82e4f2d13354f801021"
+        "baseline": "7df8783330bb273ac8d31a8af57ff7820cce97a2"
       }
     ]
   },
