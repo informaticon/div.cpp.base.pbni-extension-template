@@ -13,12 +13,16 @@ The project name is the package name according to the informaticon universal nam
 ## Setting up an environment
 
 If this is your first time building a PBNI Extension, [install vcpkg](https://vcpkg.io/en/getting-started.html) to `C:\vcpkg`
-*If for some reason you cannot install vcpkg in `C:\vcpkg` you'll have to add `-DCMAKE_TOOLCHAIN_FILE="your_vcpkg_path/scripts/buildsystems/vcpkg.cmake"` to every cmake command that includes `--preset vcpkg`*
+*If for some reason you cannot install vcpkg in `C:\vcpkg` you'll have to add `-DCMAKE_TOOLCHAIN_FILE="your_vcpkg_path/scripts/buildsystems/vcpkg.cmake"` to every cmake command that includes `--preset vcpkg[64]`*
 
-Then configure the project including installing the dependencies:
+Then configure the project including installing the dependencies using one of:
 
 ```ps1
+# For 32-bit builds
 cmake . -B build --preset vcpkg 
+
+# For 64-bit builds
+cmake . -B build --preset vcpkg64
 ```
 
 Then you can open `build/${YOUR_PROJECT_NAME}.sln` using Visual Studio
