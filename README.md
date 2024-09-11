@@ -42,13 +42,6 @@ arithmetic.h
 namespace Inf {
     class arithmetic : public PBNI_Class {
     public:
-        arithmetic(
-            IPB_Session *session,
-            pbobject pbobj,
-            std::wstring pb_class_name
-        ) : PBNI_Class(session, pbobj, pb_class_name) {
-        }
-
         PBInt f_add(PBInt, PBInt);
     };
 }
