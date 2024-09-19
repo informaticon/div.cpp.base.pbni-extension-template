@@ -4,7 +4,7 @@
     "pbni-framework"
   ],
   "overrides": [
-    { "name": "pbni-framework", "version": "0.0.12" }
+    { "name": "pbni-framework", "version": "0.0.13" }
   ],
   "vcpkg-configuration": {
     "registries": [
